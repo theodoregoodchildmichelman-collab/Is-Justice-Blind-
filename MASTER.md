@@ -51,6 +51,7 @@ Statuses: `PROPOSED` · `UNDER CRITIQUE` · `ADOPTED` · `REJECTED` · `SUPERSED
 | D-027 | 2026-10-30 17:35 CET | Stay with all 9 justices for every rung. A Roberts-only design was considered (sharper test of reasoning, 9x cheaper) and rejected: too few votes per term to tell the rungs apart, it loses the coalition test (D-013), and results from one justice may not generalize. | ADOPTED (2026-10-30 17:35 CET) |
 | D-028 | 2026-10-30 17:36 CET | Rung 4 prompt `prompts/rung4/v1.txt`: the rung 3 v1 prompt, plus a section after the justice's name with excerpts from that justice's past opinions and a "writings_relied_on" field. Critique in `prompts/rung4/README.md`. | PROPOSED |
 | D-029 | 2026-10-30 17:36 CET | Rung 4 writings: only Supreme Court opinions the justice wrote (not just joined), issued before the prediction, never from the same case or dispute (D-009). Chosen per case by word-overlap similarity (TF-IDF) to the question presented and lower-court summary; 30k tokens per justice, at most 6k per opinion. Source: CourtListener. Narrows D-004 for now; the rest of that list can come later. | PROPOSED |
+| D-030 | 2026-10-30 17:44 CET | Backup on GitHub: private repo `theodoregoodchildmichelman-collab/Is-Justice-Blind-`, branch `main`. Rung 3 pushed as a draft (prompt still PROPOSED). | ADOPTED (2026-10-30 17:44 CET) |
 
 ## Team & resources
 
