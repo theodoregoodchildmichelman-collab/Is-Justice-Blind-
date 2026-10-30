@@ -35,9 +35,11 @@ Statuses: `PROPOSED` · `UNDER CRITIQUE` · `ADOPTED` · `REJECTED` · `SUPERSED
 | D-014 | 2026-10-30 16:11 CET | Data-leakage fix: test prospectively on the October 2026 term, with predictions locked in git before each decision is released. | ADOPTED (2026-10-30) |
 | D-015 | 2026-10-30 16:11 CET | Project folder is a git repository; commit history backs up this log. | ADOPTED |
 | D-016 | 2026-10-30 16:21 CET | Data: Supreme Court Database release 2026_01 (terms 1946–2025), argued merits cases only. Development set: OT2018–OT2025 (475 cases), each term predicted only from earlier terms. | ADOPTED |
-| D-017 | 2026-10-30 16:21 CET | Ideology baseline measures each justice's lean from their own past votes in the database (not external Martin-Quinn scores); appointing party is used only for a first term. | PROPOSED |
-| D-018 | 2026-10-30 16:21 CET | For OT2026 cases we must code each lower-court ruling's direction (conservative/liberal) ourselves, before the decision, because the database adds it only afterward. | PROPOSED |
+| D-017 | 2026-10-30 16:21 CET | Ideology baseline measures each justice's lean from their own past votes in the database (not external Martin-Quinn scores); appointing party is used only for a first term. Martin-Quinn is run side by side at key points as a comparison, with results reported whichever way they fall. | ADOPTED (2026-10-30 16:28) |
+| D-018 | 2026-10-30 16:21 CET | For OT2026 cases we code each lower-court ruling's direction (conservative/liberal) ourselves, before the decision. Three independent coders (Claude + both team members) follow written rules; the averaged rating is the case's direction score and agreement sets its weight. Agreement is reported. | ADOPTED (2026-10-30 16:28) |
 | R-001 | 2026-10-30 16:21 CET | Rung 1 results (`results/rung1_baselines.md`): "always petitioner" 67.2% of cases; ideology-only 50.3% of cases but 70.6% of votes in split decisions (vs 57.1%). Ideology predicts Roberts, Gorsuch, Kavanaugh and Barrett worst (54–56%). | RESULT |
+| R-002 | 2026-10-30 16:33 CET | Rung 2 results (`results/rung2_model.md`): gradient-boosted trees on coded case facts reach 61.9% of cases, below "always petitioner" (67.2%); 63.0% of votes vs 61.4%. It predicts a petitioner win in 77% of cases, and when it predicts a loss it is right only 39% of the time: the coded facts do not identify which cases get affirmed. Martin-Quinn comparison pending (site down 2026-10-30). | RESULT |
+| D-019 | 2026-10-30 16:33 CET | No tuning against the OT2018–OT2025 development terms. Any model tuning uses OT2010–OT2017 as a separate validation set; development numbers are reported once per model version. | PROPOSED |
 
 ## Team & resources
 
@@ -46,4 +48,5 @@ Two people. No formal legal training but well read in law. Basic coding, a littl
 ## Open questions
 
 - Is a small pay-as-you-go API budget possible for scripted runs (rungs 3–4)?
+- Martin-Quinn file: download `justices.csv` from mqscores.wustl.edu (site down 2026-10-30) into `data/raw/mq/`, then rerun rung 2.
 - Which Mac does the team have? (This decides whether open-source models can run locally.)
