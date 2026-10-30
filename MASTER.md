@@ -42,6 +42,7 @@ Statuses: `PROPOSED` · `UNDER CRITIQUE` · `ADOPTED` · `REJECTED` · `SUPERSED
 | D-019 | 2026-10-30 16:33 CET | No tuning against the OT2018–OT2025 development terms. Any model tuning uses OT2010–OT2017 as a separate validation set; development numbers are reported once per model version. | PROPOSED |
 | D-020 | 2026-10-30 16:58 CET | OT2026 case list (`data/ot2026/cases.csv`): every docket granted for argument as of 2026-10-30 (35). 34 are rated; 25-886 *Genalo* (dismissed) is not. Consolidated dockets (25-238 + 25-566) are rated separately because each has its own lower court. No original-jurisdiction cases this term. Later grants get added as new rows. | PROPOSED |
 | D-021 | 2026-10-30 16:58 CET | Coding rules for lower-court direction (`docs/coding_rules.md`): imitate how SCDB coded `lcDispositionDirection`, including where that departs from everyday politics (e.g., preemption, religion, standing), because rungs 1–2 use that SCDB field. Worked examples are past cases with SCDB's actual codes. | PROPOSED |
+| D-022 | 2026-10-30 17:09 CET | Human ratings are collected in a shared Google Doc ("OT2026 Lower-Court Direction Ratings", Drive folder "2. Education & Learning / Is Justice Blind", shared with Chuck Rutberg as editor) holding the case list, the coding rules and a Theo/Chuck rating table per case. Claude's ratings stay out of it (committed to git first). Known weakness: each rater can see the other's row, so independence depends on discipline. | PROPOSED |
 
 ## Team & resources
 
