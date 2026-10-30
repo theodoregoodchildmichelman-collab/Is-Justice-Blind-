@@ -40,6 +40,8 @@ Statuses: `PROPOSED` · `UNDER CRITIQUE` · `ADOPTED` · `REJECTED` · `SUPERSED
 | R-001 | 2026-10-30 16:21 CET | Rung 1 results (`results/rung1_baselines.md`): "always petitioner" 67.2% of cases; ideology-only 50.3% of cases but 70.6% of votes in split decisions (vs 57.1%). Ideology predicts Roberts, Gorsuch, Kavanaugh and Barrett worst (54–56%). | RESULT |
 | R-002 | 2026-10-30 16:33 CET | Rung 2 results (`results/rung2_model.md`): gradient-boosted trees on coded case facts reach 61.9% of cases, below "always petitioner" (67.2%); 63.0% of votes vs 61.4%. It predicts a petitioner win in 77% of cases, and when it predicts a loss it is right only 39% of the time: the coded facts do not identify which cases get affirmed. Martin-Quinn comparison pending (site down 2026-10-30). | RESULT |
 | D-019 | 2026-10-30 16:33 CET | No tuning against the OT2018–OT2025 development terms. Any model tuning uses OT2010–OT2017 as a separate validation set; development numbers are reported once per model version. | PROPOSED |
+| D-020 | 2026-10-30 16:58 CET | OT2026 case list (`data/ot2026/cases.csv`): every docket granted for argument as of 2026-10-30 (35). 34 are rated; 25-886 *Genalo* (dismissed) is not. Consolidated dockets (25-238 + 25-566) are rated separately because each has its own lower court. No original-jurisdiction cases this term. Later grants get added as new rows. | PROPOSED |
+| D-021 | 2026-10-30 16:58 CET | Coding rules for lower-court direction (`docs/coding_rules.md`): imitate how SCDB coded `lcDispositionDirection`, including where that departs from everyday politics (e.g., preemption, religion, standing), because rungs 1–2 use that SCDB field. Worked examples are past cases with SCDB's actual codes. | PROPOSED |
 
 ## Team & resources
 
