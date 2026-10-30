@@ -43,6 +43,11 @@ Statuses: `PROPOSED` · `UNDER CRITIQUE` · `ADOPTED` · `REJECTED` · `SUPERSED
 | D-020 | 2026-10-30 16:58 CET | OT2026 case list (`data/ot2026/cases.csv`): every docket granted for argument as of 2026-10-30 (35). 34 are rated; 25-886 *Genalo* (dismissed) is not. Consolidated dockets (25-238 + 25-566) are rated separately because each has its own lower court. No original-jurisdiction cases this term. Later grants get added as new rows. | ADOPTED (2026-10-30 17:19) |
 | D-021 | 2026-10-30 16:58 CET | Coding rules for lower-court direction (`docs/coding_rules.md`): imitate how SCDB coded `lcDispositionDirection`, including where that departs from everyday politics (e.g., preemption, religion, standing), because rungs 1–2 use that SCDB field. Worked examples are past cases with SCDB's actual codes. | ADOPTED (2026-10-30 17:19) |
 | D-022 | 2026-10-30 17:09 CET | Human ratings are collected in a shared Google Doc ("OT2026 Lower-Court Direction Ratings", Drive folder "2. Education & Learning / Is Justice Blind", shared with Chuck Rutberg as editor) holding the case list, the coding rules and a Theo/Chuck rating table per case. Claude's ratings stay out of it (committed to git first). Known weakness: each rater can see the other's row, so independence depends on discipline. | ADOPTED (2026-10-30 17:19) |
+| D-023 | 2026-10-30 17:27 CET | Rung 3 prompt `prompts/rung3/v1.txt`: one template for all 9 justices, name placed after the case materials; asks for reason, vote (petitioner/respondent), confidence 0.5-1, inputs relied on, and an "outcome_known" flag. Critique in `prompts/rung3/README.md`. Code refuses real runs until approved. | PROPOSED |
+| D-024 | 2026-10-30 17:27 CET | Rung 3 inputs (`docs/rung3_collection_plan.md`): docket-page PDFs only, cut to a fixed 60k-token packet with fixed slots (QP, lower court 15k, merits briefs 12k+12k+5k, SG 4k, amici 8k, cert stage 4k). Predict once merits briefing ends, at the latest before the decision; minimal packet (QP + lower-court summary) as a labeled fallback. Needs `pypdf`. | PROPOSED |
+| D-025 | 2026-10-30 17:27 CET | Rung 3 runner: each prompt answered by a fresh Claude process with no tools, no web, no project files (Claude Code CLI in print mode, Pro subscription, one-time login), model Sonnet 5.5. Alternative: Claude answers inside a session (no setup, but the session holds project context and sees the other justices' answers). API runner left as a stub; no API spending. | PROPOSED |
+| D-026 | 2026-10-30 17:27 CET | Rung 3 scoring (`src/rung3_score.py`): a prediction counts only if committed to git, unchanged, and committed before the decision date. Decisions are entered in `data/ot2026/outcomes.csv` and `outcome_votes.csv` (each justice's vote and the opinions they joined, for D-013). Same metrics as rung 2 plus calibration and pairwise coalition agreement; all models scored on the same cases. | PROPOSED |
+| R-003 | 2026-10-30 17:27 CET | Rung 3 pipeline test on two past cases (*Medical Marijuana v. Horn*, *Williams v. Reed*), answered in-session from memory: 100% correct, which shows the contamination problem, not skill. Labeled contaminated; never an accuracy number. | RESULT |
 
 ## Team & resources
 
@@ -50,6 +55,6 @@ Two people. No formal legal training but well read in law. Basic coding, a littl
 
 ## Open questions
 
-- Is a small pay-as-you-go API budget possible for scripted runs (rungs 3–4)?
+- Is a small pay-as-you-go API budget possible for scripted runs (rungs 3–4)? (Rung 3 can run on Pro via the CLI runner if D-025 is adopted.)
 - Martin-Quinn file: download `justices.csv` from mqscores.wustl.edu (site down 2026-10-30) into `data/raw/mq/`, then rerun rung 2.
 - Which Mac does the team have? (This decides whether open-source models can run locally.)

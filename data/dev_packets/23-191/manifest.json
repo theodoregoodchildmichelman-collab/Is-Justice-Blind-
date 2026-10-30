@@ -1,0 +1,21 @@
+{
+  "docket": "23-191",
+  "case_name": "Williams v. Reed",
+  "petitioner": "Nancy Williams et al.",
+  "respondent": "Fitzgerald Washington (Reed), Secretary, Alabama Department of Workforce",
+  "scdb_case_id": "2024-004",
+  "contaminated": true,
+  "note": "Written from memory by Claude for a pipeline test only. Claude knows how this case came out.",
+  "inputs": [
+    {
+      "label": "Question presented",
+      "source": "written from memory",
+      "file": "question_presented.txt"
+    },
+    {
+      "label": "Lower-court decision (summary)",
+      "source": "written from memory",
+      "file": "lower_court.txt"
+    }
+  ]
+}

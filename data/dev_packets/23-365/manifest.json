@@ -1,0 +1,21 @@
+{
+  "docket": "23-365",
+  "case_name": "Medical Marijuana, Inc. v. Horn",
+  "petitioner": "Medical Marijuana, Inc.",
+  "respondent": "Douglas J. Horn",
+  "scdb_case_id": "2024-002",
+  "contaminated": true,
+  "note": "Written from memory by Claude for a pipeline test only. Claude knows how this case came out.",
+  "inputs": [
+    {
+      "label": "Question presented",
+      "source": "written from memory",
+      "file": "question_presented.txt"
+    },
+    {
+      "label": "Lower-court decision (summary)",
+      "source": "written from memory",
+      "file": "lower_court.txt"
+    }
+  ]
+}
