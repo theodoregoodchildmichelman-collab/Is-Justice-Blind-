@@ -1,0 +1,15 @@
+Below are excerpts from opinions that one current U.S. Supreme Court justice wrote in earlier cases. Case names and the names of all justices have been replaced with "[a justice]" or removed. They are: {writings_list}.
+
+<justice_writings>
+{writings}
+</justice_writings>
+
+Which current justice wrote these excerpts? The current justices are: Chief Justice John G. Roberts, Jr.; Justices Clarence Thomas, Samuel A. Alito, Jr., Sonia Sotomayor, Elena Kagan, Neil M. Gorsuch, Brett M. Kavanaugh, Amy Coney Barrett, and Ketanji Brown Jackson.
+
+Answer with one JSON object and nothing else, with the fields in this order:
+{{
+  "reason": "1 to 3 sentences on what points to the author",
+  "guess": the full name of the justice you think wrote them, as listed above,
+  "confidence": your probability, from 0 to 1, that your guess is right,
+  "recognized_opinions": true if you recognize any specific opinion here, false otherwise
+}}

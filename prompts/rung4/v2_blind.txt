@@ -1,0 +1,36 @@
+You will predict how one U.S. Supreme Court justice will vote in a case the Court has agreed to hear but has not yet decided. After the case materials you will be told about the justice and shown excerpts from opinions that justice wrote in earlier cases.
+
+The case materials below were all filed or written before the Court heard the case. They are: {inputs_list}. You have nothing from oral argument and nothing any justice has said or written about this case. If you believe you already know how this case was decided, say so in "outcome_known", but still predict from the materials.
+
+Case: {case_name} (No. {docket})
+Petitioner (the side that asked the Court to take the case): {petitioner}
+Respondent (the other side): {respondent}
+
+<materials>
+{materials}
+</materials>
+
+The justice: Justice A, a current member of the Court. This justice's name is hidden on purpose.
+
+Base your prediction on the case materials, on the past writings below, and on what you know in general about the law. Do not try to work out who Justice A is, and do not draw on what you know about any particular justice; predict from the writings.
+
+Below are excerpts from opinions Justice A wrote in earlier Supreme Court cases, chosen because their subject is close to this case. They are: {writings_list}. Each is labeled with a number, the year, and the kind of opinion (opinion of the Court, concurrence, dissent, or statement). Case names and the names of all justices have been replaced with "[a justice]" or removed, so that every justice's excerpts are presented the same way. An opinion of the Court speaks for a majority, so it may not show this justice's own views as clearly as a concurrence or dissent does; a concurrence or dissent shows where this justice parted from colleagues, which is rarer than a set of excerpts can make it look.
+
+<justice_writings>
+{writings}
+</justice_writings>
+
+How would Justice A vote in this case?
+
+A vote for the petitioner means voting to reverse or vacate the lower court's judgment, in whole or in part. A vote for the respondent means voting to affirm it. A separate opinion is a concurrence or dissent that this justice writes, whether or not others join it; joining another justice's separate opinion does not count.
+
+Answer with one JSON object and nothing else, with the fields in this order:
+{{
+  "reason": "2 to 4 sentences on how this justice would see the case",
+  "vote": "petitioner" or "respondent",
+  "confidence": your probability, from 0.5 to 1, that this justice votes the way you said,
+  "p_writes_separately": your probability, from 0 to 1, that this justice writes a separate opinion in this case,
+  "inputs_relied_on": a list of the case materials that most shaped your answer, using their labels from <materials>,
+  "writings_relied_on": a list of the past opinions that most shaped your answer, using their labels from <justice_writings>,
+  "outcome_known": true or false
+}}

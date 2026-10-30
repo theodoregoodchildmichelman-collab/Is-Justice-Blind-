@@ -5,7 +5,18 @@ prediction file records the version and a fingerprint (`prompt_sha256`) of the e
 
 | Version | Status | Notes |
 |---|---|---|
-| `v1.txt` | PROPOSED (D-023) | Not yet approved. Can still be edited; it freezes once approved. |
+| `v1.txt` | SUPERSEDED (by D-035) | Never used for OT2026; used only in the two contaminated pipeline tests. |
+| `v2.txt` | PROPOSED (D-035) | v1 plus `p_writes_separately`, and "Base your prediction..." moved after the name so rung 4 adds to it cleanly. `src/rung3_predict.py` still points at v1 until v2 is approved. |
+
+## v2: what changed from v1
+
+1. **New field `p_writes_separately`:** the chance this justice writes their own concurrence or
+   dissent. Scored against who actually wrote one (D-026 records it). Who writes separately shows
+   individual jurisprudence that vote accuracy misses, and it feeds the gap analysis
+   (`docs/rung4_rung5_plan.md`).
+2. **"Base your prediction on..." now comes after the justice's name.** The rung 4 prompts need that
+   sentence there (it is the one place the named and name-hidden versions differ), so rung 3 matches
+   it. Everything else in v1 is unchanged, and the design choices below still apply.
 
 **Rule:** once a version has been used for any OT2026 prediction, it is never edited. Changes make
 a new file (`v2.txt`), and the code refuses to finish a half-done case with a different template.
