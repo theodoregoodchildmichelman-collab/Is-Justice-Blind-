@@ -17,8 +17,9 @@ Who answers the prompt is a "runner", so it can be swapped later:
 
 Saving and locking (D-014):
   predictions/rung3/<docket>.json is rewritten after every justice, so a run can stop and resume.
-  Once all 9 are in, the file is committed to git. A committed file is never changed again:
-  this script refuses to write to it.
+  Once all 9 are in, the file is committed to git and pushed to GitHub right away (D-031):
+  GitHub's record of when it got the push is the proof the prediction came first. A committed
+  file is never changed again: this script refuses to write to it.
 
 Pipeline tests on past cases go to predictions/rung3_contaminated/ and are labeled
 "contaminated": Claude has probably seen those decisions, so they are never accuracy numbers.
@@ -257,6 +258,23 @@ def commit(path: Path, record: dict) -> None:
            f"(prompt {record['prompt_version']}, {record['model']})")
     subprocess.run(["git", "commit", "-m", msg, "--", str(path)], cwd=ROOT, check=True)
     print(f"Committed and locked {path.relative_to(ROOT)}")
+    push()
+
+
+def push() -> None:
+    """Send local commits to GitHub. If that fails, the local lock still stands; push by hand soon."""
+    done = subprocess.run(["git", "push", "origin", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+    if done.returncode == 0:
+        print("Pushed to GitHub")
+    else:
+        print(f"WARNING: push to GitHub failed, run `git push` as soon as you can.\n{done.stderr.strip()}")
+
+
+def is_pushed(path: Path) -> bool:
+    """True if GitHub's copy of main (as last fetched or pushed) has this file."""
+    rel = str(path.relative_to(ROOT))
+    return subprocess.run(["git", "cat-file", "-e", f"origin/main:{rel}"], cwd=ROOT,
+                          capture_output=True).returncode == 0
 
 
 def add_answer(record: dict, justice: str, answer: dict) -> None:
@@ -309,9 +327,9 @@ def cmd_status(args) -> None:
     for docket in cases.loc[cases.status == "rate", "docket"]:
         path = out_path(docket, False)
         done = len(json.loads(path.read_text())["justices"]) if path.exists() else 0
-        lock = "locked" if is_committed(path) else ""
-        packet = "packet" if (PACKETS[False] / docket / "manifest.json").exists() else "minimal"
-        print(f"{docket:8} {done}/9  {packet:7} {lock}")
+        lock = ("locked, pushed" if is_pushed(path) else "locked, NOT PUSHED") if is_committed(path) else ""
+        packet = "packet" if (PACKETS[False] / docket / "manifest.json").exists() else "no packet"
+        print(f"{docket:8} {done}/9  {packet:9} {lock}")
 
 
 def main() -> None:
