@@ -30,5 +30,13 @@ list), so none are listed.
 
 **Not rated:** 25-886 *Genalo v. Black* (dismissed under Rule 46 on 2026-09-11).
 
+## Ratings (D-018, D-021)
+
+- `ratings_claude.csv`, committed 2026-10-30 before any human rating existed.
+- `ratings_theo.csv`, `ratings_chuck.csv`: copied from the shared Google Doc once both of you have
+  finished. Same columns: `docket, rater, rating, note`.
+- `direction_scores.csv`: written by `src/ot2026_direction.py`, with one column per rater plus
+  `direction_score` (Conservative = 1, Liberal = 0, Unclear skipped) and `agreement` (3/3, 2/3, 1/3).
+
 **Updating:** if the Court grants more cases for this term, add rows at the bottom. Don't rename or
 reorder columns.
