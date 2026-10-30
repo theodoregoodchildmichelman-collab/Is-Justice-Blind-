@@ -1,6 +1,6 @@
 # Coding rules: was the lower-court ruling conservative or liberal?
 
-**Status: DRAFT, waiting for team approval (D-020). Nobody rates anything until this is ADOPTED.**
+**Status: ADOPTED 2026-10-30 (D-021).**
 
 These rules are for D-018: three raters (Claude and the two of us) each label every October 2026
 term case in `data/ot2026/cases.csv` as **Conservative**, **Liberal** or **Unclear**, working alone.
