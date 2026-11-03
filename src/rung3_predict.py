@@ -249,6 +249,14 @@ def save(record: dict, contaminated: bool) -> Path:
     return path
 
 
+def require_main() -> None:
+    """Real predictions are locked on main only, where `status` and the scorer look for them."""
+    branch = subprocess.run(["git", "branch", "--show-current"], cwd=ROOT,
+                            capture_output=True, text=True).stdout.strip()
+    if branch != "main":
+        sys.exit(f"On branch '{branch}'. Real predictions run on main only: `git switch main` first.")
+
+
 def commit(path: Path, record: dict) -> None:
     """Lock a finished case in git. The commit time is the proof it came before the decision."""
     if len(record["justices"]) < len(CURRENT_COURT):
@@ -263,6 +271,9 @@ def commit(path: Path, record: dict) -> None:
 
 def push() -> None:
     """Send local commits to GitHub. If that fails, the local lock still stands; push by hand soon."""
+    # Pick up whatever the other team member merged first, or GitHub refuses the push.
+    subprocess.run(["git", "pull", "--rebase", "--autostash", "origin", "main"], cwd=ROOT,
+                   capture_output=True, text=True)
     done = subprocess.run(["git", "push", "origin", "HEAD"], cwd=ROOT, capture_output=True, text=True)
     if done.returncode == 0:
         print("Pushed to GitHub")
@@ -285,6 +296,8 @@ def add_answer(record: dict, justice: str, answer: dict) -> None:
 # ---------- commands ----------
 
 def cmd_run(args, runner: Runner) -> None:
+    if not args.contaminated:
+        require_main()
     for docket in args.dockets:
         case = load_case(docket, args.contaminated, args.minimal)
         record = load_record(case, runner, args.contaminated)
@@ -311,6 +324,8 @@ def cmd_show(args) -> None:
 
 
 def cmd_record(args) -> None:
+    if not args.contaminated:
+        require_main()
     case = load_case(args.docket, args.contaminated, args.minimal)
     record = load_record(case, ManualRunner(args.model), args.contaminated)
     if args.justice in record["justices"]:
