@@ -15,6 +15,7 @@
 
 - [ ] One topic only
 - [ ] `MASTER.md` updated if this is a decision or a result
+- [ ] `START_HERE.md` updated if a status, file or decision it describes changed
 - [ ] Nothing in `predictions/` that was already committed is changed
 - [ ] No secrets, `.env` files or `data/raw/` files
 - [ ] Case materials follow D-009 (outside the Court only)

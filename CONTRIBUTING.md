@@ -25,7 +25,7 @@ typing, this page explains what is going on.
 
    Then open that folder as your project in the Code tab. Claude reads `CLAUDE.md` automatically
    and learns the project's rules.
-5. **Read in this order:** `README.md` → `MASTER.md` (every decision so far) → `data/README.md`
+5. **Read in this order:** `START_HERE.md` (the whole project in one file) → `MASTER.md` (every decision so far) → `data/README.md`
    → `docs/rung4_rung5_plan.md`. Or ask Claude: "Give me a tour of this project."
 
 **No Claude Code?** You can still take part from the GitHub website: open any file and press the

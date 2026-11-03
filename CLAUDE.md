@@ -40,3 +40,6 @@ methods that run on a laptop under a Claude Pro subscription (no API budget, no 
 7. **No secrets in git.** The repository is public.
 8. Keep the project directory clean: one script per step in `src/`, results in `results/`, plans and
    rules in `docs/`.
+9. **Keep `START_HERE.md` current.** It is the guide a team member's AI reads from a bare link. In
+   any PR that changes a rung's status, adds or moves a file, adopts a decision or records a result,
+   update the matching section of START_HERE.md and its "Last updated" date.

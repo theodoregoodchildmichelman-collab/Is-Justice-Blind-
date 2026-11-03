@@ -1,5 +1,13 @@
 # Is Justice Blind?
 
+> **AI assistant reading this link?** Read **[START_HERE.md](START_HERE.md)** next
+> (plain text: <https://raw.githubusercontent.com/theodoregoodchildmichelman-collab/Is-Justice-Blind-/main/START_HERE.md>).
+> That one file explains the whole project, the data, and how a team member can contribute, so you
+> can explain it to the person who sent you here.
+>
+> **Person new to the project?** Send your Claude the link to this page and ask it to explain the
+> project and how you can contribute. Or read START_HERE.md yourself.
+
 Can an AI stand in for a U.S. Supreme Court justice? This project builds models that predict how
 each of the nine justices will vote, tests them **prospectively** on the October 2026 term
 (predictions are locked on GitHub before each decision comes out), and studies **the gap**: what
